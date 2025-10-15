@@ -13,10 +13,15 @@ export class AuthService {
   //   return this._isLoggedIn.asObservable();
   // }
 
-  constructor() { }
+  constructor() { 
+    const token = localStorage.getItem('auth_token');
+    const initialStatus = !!token;
+    this._isLoggedIn.next(initialStatus);
+  }
 
-  loginSuccess() {
-    this._isLoggedIn.next(true);
+  loginSuccess(token: string) {
+    localStorage.setItem('auth_token', token);
+    this._isLoggedIn.next(true);    
   }
 
   logout() {

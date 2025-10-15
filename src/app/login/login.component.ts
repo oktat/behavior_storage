@@ -26,7 +26,9 @@ export class LoginComponent {
   login() {
     if(this.loginForm.value.username == 'admin' && 
       this.loginForm.value.password == 'titok') {
-      this.authService.loginSuccess();
+
+      const token = 'titkos_token'
+      this.authService.loginSuccess(token);
       this.router.navigate(['employee']);
     } 
   }
